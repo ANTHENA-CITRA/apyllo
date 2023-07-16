@@ -12,15 +12,15 @@ def basic_embed_status_getter(server):
     else:
         color = 0xF04747
         status = 'Offline'
-    embed = discord.Embed(title=server.name, description=26*'─', color=color)
-    embed.add_field(name='Status', value=status, inline=False)
-    embed.add_field(name='Address', value=server.link if hasattr(server, 'link') else f'{server.host}:{server.port}', inline=False)
+    embed = discord.Embed(title=server.name, description=20*'─', color=color)
+    embed.add_field(name='Status', value=status, inline=True)
+    embed.add_field(name='Address', value=server.link if hasattr(server, 'link') else f'{server.host}:{server.port}', inline=True)
     return embed
 
 
 def add_player_fields(embed, server, player_status_getter):
     player_counts = f'{server.player_count}/{server.max_player_count}'
-    embed.add_field(name='Player count', value=player_counts, inline=False)
+    embed.add_field(name='Player count', value=player_counts, inline=True)
     player_info_size = 44
     player_info_lines = ['```']
     if server.player_list:

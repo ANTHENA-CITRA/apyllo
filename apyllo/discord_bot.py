@@ -18,7 +18,7 @@ class GameServerDiscordBot(Client):
             server=None,
             channel_id=-1,
             ping_role_id=-1,
-            ping_message_content='{at_ping_role}\n`{server.name}` has currently {server.player_count} player(s) on.',
+            ping_message_content='**<@&1108178764317331456>** - {at_ping_role} - `click this` ➤ {status_message_link} - `{server.name}` has currently {server.player_count} player(s) on!',
             ping_threshold_checker=lambda server: False,
             embed_status_getter=basic_embed_status_getter,
             bot_game_name='on Game Server ({server.player_count}/{server.max_player_count})',
@@ -118,7 +118,7 @@ class GameServerDiscordBot(Client):
         if self.ping_threshold_reached(self.server):
             if self.ping_message is None:
                 self.ping_message = await self.channel.send(
-                    self.ping_message_content.format(at_ping_role=self.ping_role.mention, server=self.server)
+                    self.ping_message_content.format(at_ping_role=self.ping_role.mention, server=self.server, status_message_link=self.status_message.jump_url)
                 )
                 self.save_message_id('ping', self.ping_message.id)
         else:
